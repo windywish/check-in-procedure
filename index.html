@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Check-in Procedure | Amman Balance Beam Branch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="loading">
+    <div id="loading-screen">
+        <div class="loading-container">
+            <div class="loading-text">
+                <p>Downloading hotel check-in procedures...</p>
+                <p class="small-text">(in fact, they are ⦁ formulaic, ⦁ also private, ⦁ scripted)</p>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-status">Connecting to Balance Beam Branch...</div>
+        </div>
+    </div>
+
+    <div id="app" class="hidden">
+        <header>
+            <div class="hotel-logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjAwIDUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiMzYTVmNmYiPjxwYXRoIGQ9Ik0xMCAxMGgyMHYzMEgxMHoiLz48cGF0aCBkPSJNNDAgMTBoMjB2MjBINDB6Ii8+PHBhdGggZD0iTTcwIDIwaDIwdjIwSDcweiIvPjwvZz48dGV4dCB4PSIxMDAiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiMzYTVmNmYiPkFNTUFOPC90ZXh0Pjwvc3ZnPg==" alt="Amman Hotel Logo">
+                <span>Balance Beam Branch</span>
+            </div>
+            <div class="header-controls">
+                <div class="guest-status">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="guest-name">Guest</span>
+                    <span id="guest-level" class="level-badge">Water Grass</span>
+                </div>
+                <div class="time-display">
+                    <i class="fas fa-clock"></i>
+                    <span id="current-time">00:00</span>
+                </div>
+                <div class="system-alerts">
+                    <i class="fas fa-bell"></i>
+                    <span id="alert-count" class="alert-badge">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="sidebar">
+                <nav class="main-nav">
+                    <ul>
+                        <li data-view="hotel-reservation" class="active">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Hotel Reservation</span>
+                        </li>
+                        <li data-view="system-assistant">
+                            <i class="fas fa-robot"></i>
+                            <span>System Assistant</span>
+                        </li>
+                        <li data-view="night-elk-program">
+                            <i class="fas fa-moon"></i>
+                            <span>Night Elk Program</span>
+                        </li>
+                        <li data-view="design-process">
+                            <i class="fas fa-drafting-compass"></i>
+                            <span>Design Process</span>
+                        </li>
+                        <li data-view="procedure-exit">
+                            <i class="fas fa-door-open"></i>
+                            <span>Procedure to Leave</span>
+                        </li>
+                        <li data-view="hotel-upgrade">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Hotel Upgrade</span>
+                        </li>
+                        <li data-view="supplementary-procedure" class="locked">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Supplementary Procedure</span>
+                            <i class="fas fa-lock lock-icon"></i>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="avatar-section">
+                    <h3>Your Avatar</h3>
+                    <div class="avatar-display">
+                        <div id="avatar-image" class="avatar-image">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="avatar-details">
+                            <div id="avatar-name">Water Grass</div>
+                            <div class="avatar-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Agility</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 30%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Perception</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Resilience</span>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: 20%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-log">
+                    <h3>Current Tasks</h3>
+                    <ul id="task-list">
+                        <li class="task">
+                            <i class="fas fa-check-circle task-complete"></i>
+                            <span class="task-name">Check in to hotel</span>
+                        </li>
+                        <li class="task">
+                            <i class="fas fa-circle task-incomplete"></i>
+                            <span class="task-name">Review hotel rules</span>
+                        </li>
+                        <li class="task">
+                            <i class="fas fa-circle task-incomplete"></i>
+                            <span class="task-name">Find your room (3021)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <div id="hotel-reservation" class="content-section active">
+                    <h2>Hotel Reservation</h2>
+                    <div class="welcome-message">
+                        <p>Welcome to the Amman Hotel - Balance Beam Branch, located at No. 109 Hesheng Road, Shancheng District.</p>
+                        <p>Please review the following reservation details and hotel procedures.</p>
+                    </div>
+
+                    <div class="procedure-list">
+                        <div class="procedure-item" data-id="R001">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#R001</span>
+                                <h3>Elevator Access</h3>
+                            </div>
+                            <div class="procedure-content">
+                                <p>3 elevators, directly to the 1st to 7th floors, and then from the 9th floor to the 15th floor, less than the 8th floor</p>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item" data-id="R003">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#R003</span>
+                                <h3>Front Desk Amenities</h3>
+                            </div>
+                            <div class="procedure-content">
+                                <p>Candies, cakes, and snacks at the front desk can be tasted for free, not for sale, limited quantity, and cannot be brought into the room</p>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item" data-id="R005">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#R005</span>
+                                <h3>Breakfast Information</h3>
+                            </div>
+                            <div class="procedure-content">
+                                <p>Breakfast time is: 7:00-8:30 am, not applicable to internal staff, arranged separately, meal expenses can be settled separately or with room charges, no fried dough sticks and mustard, chocolate, durian candy, stinky tofu</p>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item" data-id="R006">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#R006</span>
+                                <h3>Public Facilities</h3>
+                            </div>
+                            <div class="procedure-content">
+                                <p>A public toilet is provided on each floor of the corridor. It is not allowed to take a bath, wash clothes or engage in large-scale activities and private activities (such as smoking, violent online games, and taking illegal drugs) in it. Note the toilet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procedure-actions">
+                        <button id="reveal-more-rules" class="action-button">
+                            <i class="fas fa-plus-circle"></i> Reveal More Rules
+                        </button>
+                    </div>
+                </div>
+
+                <div id="system-assistant" class="content-section">
+                    <h2>System Assistant</h2>
+                    <div class="assistant-interface">
+                        <div class="assistant-header">
+                            <div class="assistant-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="assistant-status">
+                                <h3>Hotel System Assistant</h3>
+                                <span class="status-indicator online">Online</span>
+                            </div>
+                        </div>
+
+                        <div class="assistant-content">
+                            <div class="procedure-list">
+                                <div class="procedure-item" data-id="A001">
+                                    <div class="procedure-header">
+                                        <span class="procedure-code">#A001</span>
+                                        <h3>Requesting Assistance</h3>
+                                    </div>
+                                    <div class="procedure-content">
+                                        <p>If guests need help, they can directly open the "faucet" and wait for the orange bubble (to confirm the security personnel), or the system provides it. It cannot be changed during the period. The response time is 2-3 minutes</p>
+                                    </div>
+                                </div>
+
+                                <div class="procedure-item" data-id="A005">
+                                    <div class="procedure-header">
+                                        <span class="procedure-code">#A005</span>
+                                        <h3>Special Skills Registration</h3>
+                                    </div>
+                                    <div class="procedure-content">
+                                        <p>If the guest has special skills (growing vegetables, graffiti, assembling parts), etc., they can upload the corresponding qualifications or cases, start the Base plan, and wait for the task assignment. The plan is not applicable to short-term guests (less than 3 days)</p>
+                                    </div>
+                                </div>
+
+                                <div class="procedure-item" data-id="A006">
+                                    <div class="procedure-header">
+                                        <span class="procedure-code">#A006</span>
+                                        <h3>Public Room Application</h3>
+                                    </div>
+                                    <div class="procedure-content">
+                                        <p>Guests can apply for a public room (PRA), and after being reviewed and approved by the system assistant, they can move into the corresponding area</p>
+                                        <ul>
+                                            <li>Area R on the 8th floor</li>
+                                            <li>Area M on the 9th floor</li>
+                                            <li>Area Y on the 11th floor</li>
+                                        </ul>
+                                        <p>And sign the "Approval Letter of Principles for the Application of Safety Matters"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="assistant-actions">
+                                <button id="open-faucet" class="action-button">
+                                    <i class="fas fa-faucet"></i> Open Faucet
+                                </button>
+                                <button id="register-skills" class="action-button">
+                                    <i class="fas fa-briefcase"></i> Register Skills
+                                </button>
+                                <button id="apply-public-room" class="action-button">
+                                    <i class="fas fa-door-open"></i> Apply for Public Room
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="night-elk-program" class="content-section">
+                    <h2>Night Elk Program</h2>
+                    <div class="night-elk-intro">
+                        <div class="night-elk-banner">
+                            <div class="night-elk-logo">
+                                <i class="fas fa-moon"></i>
+                                <i class="fas fa-deer"></i>
+                            </div>
+                            <div class="night-elk-value">
+                                <span class="value-tag">Worth</span>
+                                <span class="value-amount">¥1,000,000</span>
+                            </div>
+                        </div>
+                        <p class="night-elk-description">The exclusive Night Elk Program has been activated for your stay. Complete tasks and solve mysteries to unlock the full potential of this opportunity.</p>
+                    </div>
+
+                    <div class="procedure-list">
+                        <div class="procedure-item" data-id="E001">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#E001</span>
+                                <h3>Maintenance Period</h3>
+                            </div>
+                            <div class="procedure-content">
+                                <p>The hotel enters the rainy season maintenance period (for 1 month), during which,</p>
+                                <ul>
+                                    <li>Exterior wall and other works maintenance</li>
+                                    <li>Line inspection</li>
+                                    <li>Pipeline dredging</li>
+                                    <li>Epidemic prevention and security</li>
+                                </ul>
+                                <p>and other relevant personnel will enter and exit the hotel through the southern gate No. 3, time 9:00-11:00, 15:00-17:00</p>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item locked" data-id="E005">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#E005</span>
+                                <h3>Theme Transition</h3>
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item locked" data-id="E007">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#E007</span>
+                                <h3>Recruitment Matters</h3>
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+
+                        <div class="procedure-item locked" data-id="E008">
+                            <div class="procedure-header">
+                                <span class="procedure-code">#E008</span>
+                                <h3>Violation Handling</h3>
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="night-elk-status">
+                        <div class="status-box">
+                            <h4>Probability:</h4>
+                            <p>Confidential</p>
+                        </div>
+                        <div class="status-box">
+                            <h4>Participants:</h4>
+                            <p>Confidential (the number is greater than 3)</p>
+                        </div>
+                        <div class="status-box">
+                            <h4>Difficulty:</h4>
+                            <p>*</p>
+                        </div>
+                    </div>
+
+                    <div class="night-elk-cryptic">
+                        <p class="cryptic-message">? Yucheng was fooled</p>
+                    </div>
+                </div>
+
+                <!-- Other sections would follow similar patterns -->
+                <!-- For brevity, I'm showing the core sections and will extend as needed -->
+            </div>
+        </main>
+
+        <div id="elevator-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Elevator Control Panel</h3>
+                    <span class="close-button">&times;</span>
+                </div>
+                <div class="elevator-buttons">
+                    <div class="floor-button-container">
+                        <button class="floor-button" data-floor="15">15</button>
+                        <button class="floor-button" data-floor="14">14</button>
+                        <button class="floor-button" data-floor="13">13</button>
+                        <button class="floor-button" data-floor="12">12</button>
+                        <button class="floor-button" data-floor="11">11</button>
+                        <button class="floor-button" data-floor="10">10</button>
+                        <button class="floor-button" data-floor="9">9</button>
+                        <button class="floor-button disabled" data-floor="8">8</button>
+                        <button class="floor-button" data-floor="7">7</button>
+                        <button class="floor-button" data-floor="6">6</button>
+                        <button class="floor-button" data-floor="5">5</button>
+                        <button class="floor-button" data-floor="4">4</button>
+                        <button class="floor-button" data-floor="3" data-special="saturday-only">3</button>
+                        <button class="floor-button" data-floor="2">2</button>
+                        <button class="floor-button" data-floor="1">1</button>
+                    </div>
+                    <div class="elevator-controls">
+                        <button class="open-door-button">
+                            <i class="fas fa-door-open"></i>
+                        </button>
+                        <button class="close-door-button">
+                            <i class="fas fa-door-closed"></i>
+                        </button>
+                        <button class="emergency-button">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="elevator-status">
+                    <p>Current Floor: <span id="current-floor">1</span></p>
+                    <p class="elevator-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="orange-bubble-modal" class="modal">
+            <div class="modal-content orange-bubble-content">
+                <div class="modal-header">
+                    <h3>System Assistant - Orange Bubble</h3>
+                    <span class="close-button">&times;</span>
+                </div>
+                <div class="bubble-animation">
+                    <div class="orange-bubble"></div>
+                    <div class="orange-bubble"></div>
+                    <div class="orange-bubble"></div>
+                </div>
+                <div class="assistant-response">
+                    <p>Connecting to assistance system...</p>
+                    <p class="response-wait-time">Estimated response time: <span id="response-countdown">180</span> seconds</p>
+                </div>
+                <div class="security-verification hidden">
+                    <h4>Security Personnel Verification</h4>
+                    <div class="security-options">
+                        <div class="security-option" data-security="A">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Security A</span>
+                        </div>
+                        <div class="security-option" data-security="B">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Security B</span>
+                        </div>
+                        <div class="security-option" data-security="C">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Security C</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="assistant-actions">
+                    <button id="cancel-assistance" class="action-button">
+                        Cancel Request
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="notification-area" class="notification-area"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="hotel-simulation.js"></script>
+    <script src="narrative.js"></script>
+</body>
+</html>
