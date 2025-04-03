@@ -428,5 +428,39 @@
     <script src="app.js"></script>
     <script src="hotel-simulation.js"></script>
     <script src="narrative.js"></script>
+    // Add this script to the bottom of index.html before the closing body tag
+
+<script>
+// Add initialization for missing sections
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for app to be fully loaded
+    const initInterval = setInterval(() => {
+        if (window.app && app.state) {
+            clearInterval(initInterval);
+            
+            // Create missing sections if they don't exist
+            ['design-process', 'procedure-exit', 'hotel-upgrade', 'supplementary-procedure'].forEach(sectionId => {
+                if (!document.getElementById(sectionId)) {
+                    const section = document.createElement('div');
+                    section.id = sectionId;
+                    section.className = 'content-section';
+                    document.querySelector('.content-area').appendChild(section);
+                }
+            });
+            
+            // Initialize all sections
+            app.initializeDesignProcess();
+            app.initializeProcedureExit();
+            app.initializeHotelUpgrade();
+            app.initializeSupplementaryProcedure();
+            
+            // Setup registration form
+            app.setupRegistrationForm();
+            
+            console.log('All sections initialized successfully');
+        }
+    }, 200);
+});
+</script>
 </body>
 </html>
